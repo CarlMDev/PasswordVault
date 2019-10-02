@@ -1,0 +1,21 @@
+﻿<Window x:Name="Password_Vault" x:Class="PasswordVault.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Main Window" Height="189" Width="500" Background="#6dd6dd">
+    <Grid x:Name="MainGrid" VerticalAlignment="Top" Background="#6dd6dd">
+        <Menu Name="TopMenuBar" Width="Auto" DockPanel.Dock="Top" Background="#8bb8bb" Margin="0,0,0,130" Foreground="Azure">
+            <MenuItem Header="_File">
+                <MenuItem Header="_Add Company" Background="#8bb8bb" Click="AddCompanyItem_Click" BorderBrush="#8bb8bb" />
+                <MenuItem Header="_Exit" Background="#8bb8bb" Click="ExitItem_Click" BorderBrush="#8bb8bb" />
+            </MenuItem>
+        </Menu>
+        <TextBlock HorizontalAlignment="Left" Margin="29,44,0,0" TextWrapping="Wrap" Text="Company Name:" VerticalAlignment="Top" Name="tbCompanyName" />
+        <ComboBox HorizontalAlignment="Left" Margin="133,38,0,0" VerticalAlignment="Top" Width="218" x:Name="cbCompanyName" IsEditable="True" DisplayMemberPath="name" SelectionChanged="cbCompanyName_SelectionChanged"  TextBoxBase.TextChanged="cbCompanyName_TextChanged" ItemsSource="{Binding companyList}"  SelectedValuePath="{Binding SelectedValue.id}" />
+        <TextBlock HorizontalAlignment="Left" Margin="29,79,0,0" TextWrapping="Wrap" Text="Login:" VerticalAlignment="Top" x:Name="tbLogin" />
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="133,72,0,0" TextWrapping="NoWrap" Text="{Binding ElementName=cbCompanyName, Path=SelectedValue.login, Mode=OneWay}"  VerticalAlignment="Top" Width="218" Name="txtLogin" />
+        <TextBlock HorizontalAlignment="Left" Margin="29,113,0,0" TextWrapping="Wrap" Text="Password:" VerticalAlignment="Top" Name="tbPassword" />
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="133,106,0,0" TextWrapping="NoWrap" Text="{Binding ElementName=cbCompanyName, Path=SelectedValue.password, Mode=OneWay}" VerticalAlignment="Top" Width="218" Name="txtPassword" />
+        <Button Content="Decrypt" HorizontalAlignment="Left" Margin="375,109,0,0" VerticalAlignment="Top" Width="98" Name="btnDecrypt" Click="btnDecrypt_Click" Visibility="Hidden" />
+        <Button Content="Add" HorizontalAlignment="Left" Margin="375,38,0,0" VerticalAlignment="Top" Width="98" Name="btnAddUpdateCompany" Click="btnAddUpdateCompany_Click" Visibility="Hidden" />
+    </Grid>
+</Window>
