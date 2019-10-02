@@ -16,8 +16,8 @@ namespace PasswordVault
         private DataTable companyList = null;
         private bool isNewEntry = false;
 
-        // Pre-defined PIN
-        private int pin = 0324;
+        // Pre-defined PIN; use whatever you want
+        private int pin = 1234;
 
         public MainWindow()
         {
