@@ -135,7 +135,8 @@ namespace PasswordVault
             {
                 if (PromptForPIN())
                 {
-                    MessageBox.Show(Security.Decrypt(txtPassword.Text.Trim()));
+                    PasswordWindow passwordWindow = new PasswordWindow(Security.Decrypt(txtPassword.Text.Trim()));
+                    passwordWindow.ShowDialog();
                 }
                 else
                 {
