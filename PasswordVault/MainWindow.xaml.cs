@@ -70,13 +70,7 @@ namespace PasswordVault
         private void btnAddUpdateCompany_Click(object sender, RoutedEventArgs e)
         {
  
-            if (cbCompanyName.Text.Trim().Length == 0 || txtLogin.Text.Trim().Length == 0
-                || txtPassword.Text.Trim().Length == 0)
-            {
-                MessageBox.Show("Enter Company name, login and/or password");
-            }
-
-            else
+            if (FormValidation())
             {
                 var encryptedPassword = Security.Encrypt(txtPassword.Text.Trim());
 
@@ -252,6 +246,44 @@ namespace PasswordVault
         {
             txtLogin.Text = String.Empty;
             txtPassword.Text = String.Empty;
+        }
+
+        // Validates form fields on MainWindow
+        private bool FormValidation()
+        {
+            if (cbCompanyName.Text.Trim().Length == 0 || txtLogin.Text.Trim().Length == 0
+              || txtPassword.Text.Trim().Length == 0)
+            {
+                MessageBox.Show("Enter Company name, login and/or password.");
+                return false;
+            }
+
+            if(cbCompanyName.Text.Trim().Length > 25)
+            {
+                MessageBox.Show("Company Name is too long.  Make it less than 25 characters.");
+                return false;
+            }
+
+            if (txtLogin.Text.Trim().Length > 25)
+            {
+                MessageBox.Show("Login is too long. Make it less than 25 characters.");
+                return false;
+            }
+
+            if (txtPassword.Text.Trim().Length > 25)
+            {
+                MessageBox.Show("Password is too long. Make it less than 25 characters.");
+                return false;
+            }
+
+            if (txtPassword.Text.Trim().Length < 7)
+            {
+                MessageBox.Show("Password is too short. Make it more than 7 characters.");
+                return false;
+            }
+
+            return true;
+
         }
 
     }
